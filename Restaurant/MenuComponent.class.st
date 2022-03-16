@@ -6,45 +6,45 @@ Class {
 
 { #category : #printing }
 MenuComponent >> add: aMenuComponent [
-	self subclassResponsibility 
+	self error: 'illegal call with add. Bad.'
 ]
 
 { #category : #printing }
 MenuComponent >> getChild: anInt [
-	self subclassResponsibility 
+	self error: 'illegal call with getChild. Bad.'
 ]
 
 { #category : #private }
 MenuComponent >> getDescription [ 
-	self subclassResponsibility 
+	self error: 'illegal call on getDescription. Bad.'
 ]
 
 { #category : #private }
 MenuComponent >> getName [
-	self subclassResponsibility 
+	self error: 'illegal call on getName. Bad.'
 ]
 
 { #category : #private }
 MenuComponent >> getPrice [ 
-	self subclassResponsibility 
+	self error: 'illegal call with getPrice. Bad.'
 ]
 
 { #category : #private }
 MenuComponent >> isPerhapsRaw [ 
-	self subclassResponsibility 
+	self error: 'illegal call with isPerhapsRaw. Bad.'
 ]
 
 { #category : #private }
 MenuComponent >> isVegetarian [ 
-	self subclassResponsibility 
+	self error: 'illegal callisVegetarian. Bad.'
 ]
 
 { #category : #printing }
 MenuComponent >> print [
-	self subclassResponsibility 
+	self error: 'illegal call with print. Bad.'
 ]
 
 { #category : #printing }
 MenuComponent >> remove: aMenuComponent [
-	self subclassResponsibility 
+	self error: 'illegal call with remove. Bad.'
 ]
