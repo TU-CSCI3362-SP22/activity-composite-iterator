@@ -52,6 +52,10 @@ Menu >> name: anObject [
 
 { #category : #printing }
 Menu >> print [
+	Transcript show: name.
+	Transcript cr.
+	Transcript show: description.
+	Transcript cr.
 	items do: [ :item | item print ]
 ]
 
