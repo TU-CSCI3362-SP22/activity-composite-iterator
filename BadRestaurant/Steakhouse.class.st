@@ -9,13 +9,13 @@ Class {
 
 { #category : #adding }
 Steakhouse >> add: aMenuComponent [
-	items add: aMenuComponent
+	items at: aMenuComponent name put: aMenuComponent
 ]
 
 { #category : #initialization }
 Steakhouse >> initialize [
 	super initialize.
-	items := OrderedCollection new.
+	items := Dictionary new.
 ]
 
 { #category : #accessing }
@@ -39,5 +39,5 @@ Steakhouse >> print [
 
 { #category : #removing }
 Steakhouse >> remove: aMenuComponent [
-	items remove: aMenuComponent
+	items removeKey: (aMenuComponent name).
 ]
