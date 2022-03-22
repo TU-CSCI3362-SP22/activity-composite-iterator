@@ -34,7 +34,8 @@ Steakhouse >> print [
 	Transcript cr.
 	Transcript show: 'a house of cowcakes'.
 	Transcript cr.
-	items do: [ :item | item print ]
+	items do: [ :item | item print ].
+	submenus do: [ :ms | ms print ].
 ]
 
 { #category : #removing }
