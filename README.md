@@ -34,14 +34,14 @@ To solve this, the menus of the two restaurants have been given a common supercl
 Breaking News! The Steak House manager has announced a new Dessert submenu, and they didn’t consult with you! Now you have to create another, separate menu called `Dessert` which is a subclass of `Steakhouse`. You asked if it could be its own menu, but the manager refused. “The customer is always right 🙄.”
 
 1. Add a class called `Dessert` as a subclass of `Steakhouse`.
-  - It should have an instance variable that can store the items in its menu.
-2. `Dessert` has to be able to handle its list of Items.
-  a. It must initialize all its variables, including the `Dictionary` storing its items. Be careful, it may not be safe to call `super initialize`!
-3. `Steakhouse` must now acknowledge the `Dessert` menu
-  a. Somewhere, the submenu must be sored. 
-  b. `Steakouse`’s `print` must call the `print` method on its submenu.
+   - It should have an instance variable that can store the items in its menu.
+1. `Dessert` has to be able to handle its list of Items.
+   - It must initialize all its variables, including the `Dictionary` storing its items. Be careful, it may not be safe to call `super initialize`!
+1. `Steakhouse` must now acknowledge the `Dessert` menu
+   - Somewhere, the submenu must be sored. 
+   - `Steakouse`’s `print` must call the `print` method on its submenu.
      - This means you must *override* the print menu for ``Dessert`. It should only print its own information and call the `print` methods of all the Items it stores. 
-4. Extend the `menuExample` method of `BigMenuTester` by creating a million-dollar moon pie and adding it 
+1. Extend the `menuExample` method of `BigMenuTester` by creating a million-dollar moon pie and adding it 
 ```Smalltalk
 	moonpie := Item new.
 	moonpie name: 'Moonpie'.
