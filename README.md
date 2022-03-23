@@ -1,9 +1,9 @@
-Composite/Iterator
+## Composite/Iterator
 March 23, 2022
 
-Amber Carlson
-Liliana Villarreal
-Travis Mewborne
+Amber Carlson <br />
+Liliana Villarreal <br />
+Travis Mewborne <br />
 
 **Link to better version as a GoogleDoc: https://docs.google.com/document/d/1orm8D9fmFXzVbEroChFoIG5bcN60IXdlQCxUE8o_MRI/edit?usp=sharing
 **
