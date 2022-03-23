@@ -8,7 +8,7 @@ Travis Mewborne
 **Link to better version as a GoogleDoc: https://docs.google.com/document/d/1orm8D9fmFXzVbEroChFoIG5bcN60IXdlQCxUE8o_MRI/edit?usp=sharing
 **
 
-Phase 0: What is the Composite Pattern?
+##Phase 0: What is the Composite Pattern?
 
 🌶The basic idea of the Composite Pattern is to create a tree where each node can either be a leaf or another branching node. This allows for more flexibility in future growth but comes at a hefty refactoring cost.
 
