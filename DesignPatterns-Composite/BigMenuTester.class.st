@@ -4,9 +4,10 @@ Class {
 	#category : #'DesignPatterns-Composite'
 }
 
-{ #category : #'as yet unclassified' }
-BigMenuTester >> menuTester [
+{ #category : #example }
+BigMenuTester >> exampleMenu [
 | steak buttermilk cowHouse pancakeHouse menu |
+Transcript clear.
 steak := Item new.
 steak name: 'a steak'.
 steak description: 'a whole cow'.
