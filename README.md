@@ -14,7 +14,7 @@ Travis Mewborne
 
 
 
-Phase 1: Become Familiar with our code
+## Phase 1: Become Familiar with our code
 
 Restaurant story - owners each want to keep everything their own way
 Recently the two popular restaurants Pancake House and Steak House merged into one “affordable” business! To accommodate this change, your new manager wants a combined menu with both menus from the old businesses. However, one menu is implemented with an OrderedCollection and the other with a Dictionary. What’s more, the chefs at each restaurant refuse to change their implementation insisting that their way is better. 
@@ -29,7 +29,7 @@ BigMenuTester - contains a method called menuTester which has no actual test cod
 
 
 
-Phase 2: Problem and Bad Solution
+## Phase 2: Problem and Bad Solution
 
 Breaking News! The Steak House manager has announced a new Dessert submenu, and they didn’t consult with you! Now you have to create another, separate menu called Dessert which is a subclass of SteakHouse. You asked if it could be its own menu, but the manager refused. “The customer is always right 🙄.”
 
@@ -68,7 +68,7 @@ If the “has-a” and “is-a” relationships were confused before, now they a
 Further, there is so much copy-pasting required to make this change and any similar changes that may occur in the future. It is not well extensible.
 
 
-Phase 3: Good Solution
+## Phase 3: Good Solution
 
 Time to refactor! To follow the Composite Pattern, we must abstract out all the menus and item types to one overarching class, MenuComponent. Having one class for each menu is unnecessary and messy. This way we can have a tree of where each menu’s children can be either MenuItems or Menus. To achieve this, all the methods that either class will need to have to be defined in the overarching MenuComponent, but return errors. They can then be overridden in the classes that need them to function properly. If any methods are called that make no sense for the class they are being called on, for instance, if someone asks whether a menu is vegetarian, it will return an error. 
 
@@ -98,6 +98,6 @@ sugar, yes, yes, all the sugar
 not a vegetable
 
 
-Phase 4: Takeaways
+## Phase 4: Takeaways
 
 The composite pattern is essentially a redesign which is going to be more difficult the more code there to be redesigned. However, it much more easily handles growth because of its flexibility. Thus, it only really makes sense to apply to smaller projects that have the potential to grow in oddly nested ways.
