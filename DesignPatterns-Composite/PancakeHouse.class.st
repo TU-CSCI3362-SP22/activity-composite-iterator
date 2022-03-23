@@ -14,7 +14,8 @@ PancakeHouse >> add: aMenuComponent [
 
 { #category : #initialization }
 PancakeHouse >> initialize [
-	super initialize.
+	"have to comment this out! Keeps making an infinite loop for some reason. Weird!"
+	"super initialize."
 	items := OrderedCollection new.
 ]
 

@@ -2,39 +2,42 @@ Class {
 	#name : #BigMenu,
 	#superclass : #Object,
 	#instVars : [
-		'submenus'
+		'steakhouseMenu',
+		'pancakeMenu'
 	],
 	#category : #'DesignPatterns-Composite'
 }
 
-{ #category : #adding }
-BigMenu >> add: aMenuComponent [
-	submenus add: aMenuComponent
+{ #category : #initialization }
+BigMenu >> initialize [ 
+	pancakeMenu := PancakeHouse new.
+	steakhouseMenu := Steakhouse new.
 ]
 
-{ #category : #initialization }
-BigMenu >> initialize [
-	submenus  := OrderedCollection new.
+{ #category : #accessing }
+BigMenu >> pancakeMenu [
+	^ pancakeMenu
+]
+
+{ #category : #accessing }
+BigMenu >> pancakeMenu: anObject [
+	pancakeMenu := anObject
 ]
 
 { #category : #printing }
 BigMenu >> print [
 	Transcript show: 'Main Menu'.
 	Transcript cr.
-	submenus do: [ :item | item print ]
-]
-
-{ #category : #removing }
-BigMenu >> remove: aMenuComponent [
-	submenus remove: aMenuComponent
+	pancakeMenu print.
+	steakhouseMenu print.
 ]
 
 { #category : #accessing }
-BigMenu >> submenus [
-	^ submenus
+BigMenu >> steakhouseMenu [
+	^ steakhouseMenu
 ]
 
 { #category : #accessing }
-BigMenu >> submenus: anObject [
-	submenus := anObject
+BigMenu >> steakhouseMenu: anObject [
+	steakhouseMenu := anObject
 ]

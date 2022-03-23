@@ -14,7 +14,8 @@ Steakhouse >> add: aMenuComponent [
 
 { #category : #initialization }
 Steakhouse >> initialize [
-	super initialize.
+	"have to comment this out! Keeps making an infinite loop for some reason. Weird!"
+	"super initialize."
 	items := Dictionary new.
 ]
 
