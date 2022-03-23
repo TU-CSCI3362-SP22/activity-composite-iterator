@@ -40,7 +40,7 @@ Breaking News! The Steak House manager has announced a new Dessert submenu, and 
 1. `Steakhouse` must now acknowledge the `Dessert` menu
    - Somewhere, the submenu must be sored. 
    - `Steakouse`’s `print` must call the `print` method on its submenu.
-     - This means you must *override* the print menu for ``Dessert`. It should only print its own information and call the `print` methods of all the Items it stores. 
+     - This means you must *override* the print menu for `Dessert`. It should only print its own information and call the `print` methods of all the Items it stores. 
 1. Extend the `menuExample` method of `BigMenuTester` by creating a million-dollar moon pie and adding it 
 ```Smalltalk
 	moonpie := Item new.
