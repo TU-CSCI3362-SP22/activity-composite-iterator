@@ -1,6 +1,6 @@
 Class {
 	#name : #BigMenuBuilder,
-	#superclass : #TestCase,
+	#superclass : #Object,
 	#category : #'DesignPatterns-Composite'
 }
 
