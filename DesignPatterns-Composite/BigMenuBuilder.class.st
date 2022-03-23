@@ -1,11 +1,11 @@
 Class {
-	#name : #BigMenuTester,
+	#name : #BigMenuBuilder,
 	#superclass : #TestCase,
 	#category : #'DesignPatterns-Composite'
 }
 
 { #category : #example }
-BigMenuTester >> exampleMenu [
+BigMenuBuilder >> exampleMenu [
 | steak buttermilk cowHouse pancakeHouse menu |
 Transcript clear.
 steak := Item new.
