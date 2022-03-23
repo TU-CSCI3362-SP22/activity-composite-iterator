@@ -71,7 +71,7 @@ buttermilk pancake (v), $700.00
       its like butter, but bread. Also it`s the size of Mississippi
 ```
 
-### Discussion: What makes this code bad?
+### Takeout: What makes this code bad?
 
 This code confuses the "is-a" relation of inheritance and the "has-a" relation of composition. Yes, all menus are a kind of menu, but menus are also *holding* other menus. Take a look at the `initialize` methods for `Steakhouse` and `PancakeHouse` - we can't even use `super initialize` because our parent `BigMenu`'s intializer creates it's component sub-menus! The `Dessert` class makes this so much worse. *Contained classes* and *subclasses* are fundamentally different, but are being used similarly. When implementing the `Dessert` class you had the same problem - it cannot use the inherited `print` method, because `Steakhouse`'s `print` has the dessert menus hard-coded in! Because our class hierarchy is so muddled with the idea of composition, we can't even re-use code between different classes. There is so much copy-pasting required to make this change and any similar changes that may occur in the future. It is not extensible.
 
@@ -102,7 +102,7 @@ The class hierarchy can be created by refactoring the existing classes.
 
 The resultant output should be similar to the above!
 
-### Takeaways
+### Takeaway: Limitations of the Composite Pattern
 
 - The composite pattern uses the class hierarchy to describe what kind of node an object is, rather than something more concrete. However, it handles growth and arbitrary composition much more easily, because of its flexibility. Thus, it only really makes sense to apply to smaller projects that have the potential to grow in oddly nested ways.
 - Because the composite pattern requires significant redesign, it is going to be more difficult the more code has already been written.
