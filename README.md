@@ -1,44 +1,103 @@
-# Visitor Activity
+Composite/Iterator
+March 23, 2022
 
-This activity is designed to be completed in groups of 1-3. Phase 1 involves familiarizing yourself with the existing code base and add features. In Phase 2 we will cover the visitor pattern in the abstract. In Phase 3 you will implement the visitor pattern.
+Amber Carlson
+Liliana Villarreal
+Travis Mewborne
 
-## Phase 1 - 
-Browse to the DesignPatterns-Visitor package. I will explain the structure of the code, and you will then have 25 minutes to add the `annualCost` feature. You can create an example shop in the Playground with `Shop fidgetEmporium`.
+**Link to better version as a GoogleDoc: https://docs.google.com/document/d/1orm8D9fmFXzVbEroChFoIG5bcN60IXdlQCxUE8o_MRI/edit?usp=sharing
+**
 
-We need to know the annual cost of operating the machine shop. The annual cost for job machines is simply their maintenance cost. However, for utility machines we must factor both the maintenance cost and the amortized purchase price (i.e. purchase price divided by lifetime). There is no annual cost for tools.
-You will need to add the `annualCost` method to:
-- `Shop`
-- `Room`
-- `Equipment` (as an abstract method)
-- Appropriate subclasses of equipment.
+## Phase 0: What is the Composite Pattern?
 
-## Phase 2 - 
-The visitor pattern is used to decouple operations that are performed over a wide range of objects from the class definitions of those objects. When adding a new property we want to evaluate (or operation we want to perform), the straightforward approach is to create a new method for shops, rooms, and each piece of equipment. By using dynamic dispatch, the correct version of the method gets called for the correct object. However, each property requires a new method for each class, and the evaluation of th eproperty is spread across the class hierarchy.
+🌶The basic idea of the Composite Pattern is to create a tree where each node can either be a leaf or another branching node. This allows for more flexibility in future growth but comes at a hefty refactoring cost.
 
-To solve this, we will embody the operations or properties as individual objects called visitors. Each object in our hierarchy will accept visitors, inform the visitor to process itself using a `visit` method, and then send the visitor on to any composite objects. This means we require only a single `accept` method in each class. Dynamic dispatch will be used to invoke the correct `visit` method, based on the property we are evaluating.
 
-The visitor is then responsible for knowing how to process each object, based on it's class. In order to know the class of the object, we use *double dispatch* - objects of class `Foo` will invoke a specific `visitFoo` method. Each visitor will then implement `visitFoo` for every relevant class in the hierarchy. Picking the relevant classes requires some care.
 
-Note that the number of `visit` methods can be quite large - and many visitors might only need to process specific ones. For example, a power visitor doesn't need to look at unpowered tools. One solution to this is an abstract visitor base class that implements "null methods" - methods which do nothing, but can be overridden if needed.
+Phase 1: Become Familiar with our code
 
-## Phase 3 -
-Refactor your code to use the visitor pattern.
-1. Create an abstract `MachineShopVisitor` class with the following methods.
-   - `report` (fully abstract)
-   - `visitX:` for all important classes `X`. Begin with `visitRoom:`, `visitShop:`, and `visitEquipment:`. 
-   - `visitX:` can, by default, do nothing.
-1. You will need to add `accept: aVisitor` methods to `Room`, `Shop`, and `Equipment`.   
-   - For rooms and shops, you will both tell the visitor to `visitRoom`/`visitShop` and inform all components that they should accept the visitor.
-   - For equipment, you can just tell the visitor to `visitEquipment`.
-1. Create a `PowerVisitor` subclass of `MachineShopVisitor`.
-   - Store both idle power usage and maximum peak power usage. Initialize both to 0. 
-   - On `report` print both usages to the `Transcript`.
-   - Create the `visitX` methods necessary to compute appropriate values. If necessary, split `visitEquipment` by subclasses.
-   - Remove the corresponding methods from `Machine` (and subclasses), `Room`, and `Shop`. This will likely break the per-room power check.
-1. Add an `AnnualCostVisitor` subclass and repeat the above process.
-1. Time permitting, use a dictionary to associate the name of each room to the rooms total power usage. You will have to re-implement `powerRequired`!
+Restaurant story - owners each want to keep everything their own way
+Recently the two popular restaurants Pancake House and Steak House merged into one “affordable” business! To accommodate this change, your new manager wants a combined menu with both menus from the old businesses. However, one menu is implemented with an OrderedCollection and the other with a Dictionary. What’s more, the chefs at each restaurant refuse to change their implementation insisting that their way is better. 
+To solve this, the menus of the two restaurants have been given a common superclass, with both restaurant menus using the same item class. This works, however, it confuses the “has-a” and “is-a” relationships because Item and each menu are at the same depth, but the menus have items in their menus.
 
-## Phase 4 -
-In this phase we will identify some limitations of the visitor pattern. One has already been afforded by the activity, the rest will be outlined in class.
+BigMenu - overarching menu that contains all the submenus from the two restaurants.
+Item - A menu item
+Beware: this implementation contains both a class Item and a variable items, which is a [Item].
+PancakeHouse - menu from the Pancake House containing a list of items on its menu. It has a print method that prints all the items on its menu.
+SteakHouse - menu from the Steak House containing a list of item items on its menu. It has a print method that prints all the items on its menu.
+BigMenuTester - contains a method called menuTester which has no actual test code in it. Instead, it contains some sample code that, when copied into the playground, will show some of the capabilities of the above classes. Mess around with this code to become familiar with the existing class hierarchy.
 
-- The visitor pattern has to pick which classes in the hierarchy get named `visit` methods. Some properties might require specifics of subclasses, while others might operate better over superclasses. It is possible to make the visit methods for subclasses default to the superclass implementation. For example, in the abstract Visitor base class, we can implement of `visitJobMachine: aJobMachine` as `self visitMachine: aJobMachine`. Then subclasses can override either both `visitJobMachine` and `visitUtility`, or just `visitMachine.` This approach introduces a lot of choice, and therefore complexity and the chance for bugs, when implementing new visitors - a problem for a pattern that is focused around implementing new visitors.
+
+
+Phase 2: Problem and Bad Solution
+
+Breaking News! The Steak House manager has announced a new Dessert submenu, and they didn’t consult with you! Now you have to create another, separate menu called Dessert which is a subclass of SteakHouse. You asked if it could be its own menu, but the manager refused. “The customer is always right 🙄.”
+
+Add a class called Dessert as a subclass of SteakHouse.
+It should have an instance variable that can store the items in its menu.
+Dessert has to be able to handle its list of Items.
+It must initialize all its variables, including the OrderedCollection storing its items.
+It must also extend add: and remove:.
+It also needs a new print method that prints its own information and calls the print methods of all the Items it stores.
+SteakHouse must now acknowledge the Dessert menu
+Somewhere, a list of submenus must be stored
+SteakHouse’s print must call the print method of all its submenus
+
+To test your code:
+	(BigMenuTester new) menuTester.
+
+Alternatively, copy and paste the code from menuTester into the playground (omitting the method name)
+
+After running the sample test code, the output should resemble the following:
+Main Menu
+IHOB
+a house of cowcakes
+a steak*, $500.00
+     a whole cow
+IHOB`s Dessert Menu
+a house of cowcakes, but with more sugar
+Moonpie (v), $1,000,000.00
+     A nice slice o moon
+Not IHOB
+a house of pancakes
+buttermilk pancake (v), $700.00
+     its like butter, but bread. Also it`s the size of Mississippi
+
+Discussion: What makes this code bad?
+If the “has-a” and “is-a” relationships were confused before, now they are so much worse. Items and subclasses are fundamentally different things but are being used similarly. What’s more, the Dessert class is deeper than the Item class despite having items.
+Further, there is so much copy-pasting required to make this change and any similar changes that may occur in the future. It is not well extensible.
+
+
+Phase 3: Good Solution
+
+Time to refactor! To follow the Composite Pattern, we must abstract out all the menus and item types to one overarching class, MenuComponent. Having one class for each menu is unnecessary and messy. This way we can have a tree of where each menu’s children can be either MenuItems or Menus. To achieve this, all the methods that either class will need to have to be defined in the overarching MenuComponent, but return errors. They can then be overridden in the classes that need them to function properly. If any methods are called that make no sense for the class they are being called on, for instance, if someone asks whether a menu is vegetarian, it will return an error. 
+
+
+A bit about the composite
+Instructions for good code
+MenuComponent -  needs to have the methods add:, print, and remove:. These should call errors. When they are implemented, you can reference their implementation in the old restaurant code for guidance.
+Menu - 
+Instance variables - name, description, items
+Needs accessor methods
+Override the methods add:, initialize, print, and remove:.
+MenuItem - 
+Instance Variables - name, price, description, veg, raw
+Needs accessor Methods for each of the above
+Override Methods - print
+
+
+MenuTester - Like before, this is not really test code, but some sample code that can be run if copied into the playground or created as an object. To test your code, run:
+(MenuTester new) addPrintTest.
+
+The resultant output should resemble the following:
+Entre
+a menu
+sand* (v), $1.00
+     a sandwich, yum
+sugar, yes, yes, all the sugar
+not a vegetable
+
+
+Phase 4: Takeaways
+
+The composite pattern is essentially a redesign which is going to be more difficult the more code there to be redesigned. However, it much more easily handles growth because of its flexibility. Thus, it only really makes sense to apply to smaller projects that have the potential to grow in oddly nested ways.
