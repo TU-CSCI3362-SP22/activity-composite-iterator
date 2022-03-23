@@ -6,7 +6,7 @@ Class {
 
 { #category : #example }
 BigMenuBuilder >> exampleMenu [
-| steak buttermilk cowHouse pancakeHouse menu |
+| steak buttermilk menu |
 Transcript clear.
 steak := Item new.
 steak name: 'a steak'.
@@ -27,7 +27,7 @@ menu steakhouseMenu add: steak.
 menu pancakeMenu add: buttermilk.
 
 menu print.
-
+^ menu.
 
 
 ]

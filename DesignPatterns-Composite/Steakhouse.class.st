@@ -35,7 +35,8 @@ Steakhouse >> print [
 	Transcript cr.
 	Transcript show: 'a house of cowcakes'.
 	Transcript cr.
-	items do: [ :item | item print ]
+	"had to comment out the name printing cause it printed twice!"
+	items keysAndValuesDo: [ :name :item | "Transcript show: name." item print ]
 ]
 
 { #category : #removing }
